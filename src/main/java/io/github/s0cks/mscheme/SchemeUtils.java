@@ -3,7 +3,7 @@ package io.github.s0cks.mscheme;
 import io.github.s0cks.mscheme.primitives.SchemeBoolean;
 import io.github.s0cks.mscheme.primitives.SchemeObject;
 import io.github.s0cks.mscheme.primitives.SchemePair;
-import io.github.s0cks.mscheme.primitives.SchemeString;
+import io.github.s0cks.mscheme.primitives.SchemeSymbol;
 
 public final class SchemeUtils {
   public static SchemeObject car(SchemeObject obj) {
@@ -19,8 +19,8 @@ public final class SchemeUtils {
   }
 
   public static String symbol(SchemeObject obj) {
-    return (obj instanceof SchemeString)
-           ? ((SchemeString) obj).value
+    return (obj instanceof SchemeSymbol)
+           ? ((SchemeSymbol) obj).value
            : "";
   }
 

@@ -6,15 +6,20 @@ import io.github.s0cks.mscheme.primitives.SchemeNull;
 import io.github.s0cks.mscheme.primitives.SchemeObject;
 import io.github.s0cks.mscheme.primitives.SchemePair;
 import io.github.s0cks.mscheme.primitives.SchemeProcedure;
-import io.github.s0cks.mscheme.primitives.SchemeString;
+import io.github.s0cks.mscheme.primitives.SchemeSymbol;
 
 public final class Scheme {
-  private final SchemeString LAMBDA = new SchemeString("lambda");
+  public static final SchemeSymbol LAMBDA = new SchemeSymbol("lambda");
+  public static final Environment GLOBAL = new Environment();
+
+  public SchemeObject eval(SchemeObject func){
+    return this.eval(func, GLOBAL);
+  }
 
   public SchemeObject eval(SchemeObject func, Environment env) {
     while (true) {
-      if (func instanceof SchemeString) {
-        return env.lookup(((SchemeString) func).value);
+      if (func instanceof SchemeSymbol) {
+        return env.lookup(((SchemeSymbol) func).value);
       } else if (!(func instanceof SchemePair)) {
         return func;
       } else {
@@ -69,7 +74,7 @@ public final class Scheme {
   }
 
   private SchemeObject evalList(SchemeObject pair, Environment env) {
-    if (pair == null) {
+    if (pair == SchemeNull.instance) {
       return SchemeNull.instance;
     } else if (!(pair instanceof SchemePair)) {
       return SchemeNull.instance;

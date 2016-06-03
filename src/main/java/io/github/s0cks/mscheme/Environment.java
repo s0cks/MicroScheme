@@ -1,10 +1,14 @@
 package io.github.s0cks.mscheme;
 
 import io.github.s0cks.mscheme.natives.add;
+import io.github.s0cks.mscheme.natives.divide;
+import io.github.s0cks.mscheme.natives.multiply;
+import io.github.s0cks.mscheme.natives.sqrt;
 import io.github.s0cks.mscheme.natives.subtract;
 import io.github.s0cks.mscheme.primitives.SchemeObject;
 import io.github.s0cks.mscheme.primitives.SchemeProcedure;
 import io.github.s0cks.mscheme.primitives.SchemeString;
+import io.github.s0cks.mscheme.primitives.SchemeSymbol;
 
 public final class Environment{
   public final Environment parent;
@@ -21,10 +25,13 @@ public final class Environment{
     this.parent = null;
     this.definePrimitive("+", new add());
     this.definePrimitive("-", new subtract());
+    this.definePrimitive("/", new divide());
+    this.definePrimitive("*", new multiply());
+    this.definePrimitive("sqrt", new sqrt());
   }
 
   private void definePrimitive(String name, SchemeProcedure proc){
-    this.define(new SchemeString(name), proc);
+    this.define(new SchemeSymbol(name), proc);
   }
 
   public SchemeObject lookup(String symbol){
@@ -47,9 +54,9 @@ public final class Environment{
   }
 
   public SchemeObject set(SchemeObject var, SchemeObject val){
-    if(!(var instanceof SchemeString)) throw new IllegalStateException("Attempt to set a non-symbol: " + var);
+    if(!(var instanceof SchemeSymbol)) throw new IllegalStateException("Attempt to set a non-symbol: " + var);
 
-    String symbol = ((SchemeString) var).value;
+    String symbol = ((SchemeSymbol) var).value;
     SchemeObject varList = this.vars;
     SchemeObject valList = this.vals;
 

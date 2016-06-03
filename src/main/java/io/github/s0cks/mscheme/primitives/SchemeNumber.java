@@ -8,16 +8,29 @@ implements SchemeObject{
     this.value = value;
   }
 
+  public double value(){
+    return this.value;
+  }
+
   public SchemeNumber add(SchemeObject obj){
     if(!(obj instanceof SchemeNumber)) throw new IllegalStateException("Not a number: " + obj);
-    this.value += ((SchemeNumber) obj).value;
-    return this;
+    return new SchemeNumber(this.value + ((SchemeNumber) obj).value);
   }
 
   public SchemeNumber subtract(SchemeObject obj){
     if(!(obj instanceof SchemeNumber)) throw new IllegalStateException("Not a number: " + obj);
-    this.value -= ((SchemeNumber) obj).value;
-    return this;
+    return new SchemeNumber(this.value - ((SchemeNumber) obj).value);
+
+  }
+
+  public SchemeNumber multiply(SchemeObject obj){
+    if(!(obj instanceof SchemeNumber)) throw new IllegalStateException("Not a number: " + obj);
+    return new SchemeNumber(this.value * ((SchemeNumber) obj).value);
+  }
+
+  public SchemeNumber divide(SchemeObject obj){
+    if(!(obj instanceof SchemeNumber)) throw new IllegalStateException("Not a number: " + obj);
+    return new SchemeNumber(this.value / ((SchemeNumber) obj).value);
   }
 
   @Override

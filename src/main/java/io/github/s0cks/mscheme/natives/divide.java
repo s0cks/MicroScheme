@@ -1,0 +1,28 @@
+package io.github.s0cks.mscheme.natives;
+
+import io.github.s0cks.mscheme.Scheme;
+import io.github.s0cks.mscheme.SchemeUtils;
+import io.github.s0cks.mscheme.primitives.SchemeNull;
+import io.github.s0cks.mscheme.primitives.SchemeNumber;
+import io.github.s0cks.mscheme.primitives.SchemeObject;
+import io.github.s0cks.mscheme.primitives.SchemePair;
+import io.github.s0cks.mscheme.primitives.SchemeProcedure;
+
+public final class divide
+extends SchemeProcedure{
+  @Override
+  public SchemeObject apply(Scheme scheme, SchemeObject args) {
+    SchemeNumber result = ((SchemeNumber) (args instanceof SchemePair ? SchemeUtils.car(args) : args));
+    args = ((args instanceof SchemePair) ? SchemeUtils.cdr(args) : SchemeNull.instance);
+    while(args != SchemeNull.instance){
+      if(args instanceof SchemePair){
+        result = result.divide(SchemeUtils.car(args));
+        args = SchemeUtils.cdr(args);
+      } else{
+        result = result.divide(args);
+        args = SchemeNull.instance;
+      }
+    }
+    return result;
+  }
+}

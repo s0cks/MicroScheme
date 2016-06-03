@@ -16,8 +16,8 @@ extends SchemeClosure{
       old.car = ((SchemePair) expansion).car;
       old.cdr = ((SchemePair) expansion).cdr;
     } else{
-      old.car = new SchemeString("begin");
-      old.cdr = SchemeUtils.cons(expansion, null);
+      old.car = new SchemeSymbol("begin");
+      old.cdr = SchemeUtils.cons(expansion, SchemeNull.instance);
     }
 
     return old;
