@@ -45,12 +45,12 @@ public final class Scheme {
           }
         } else if (SchemeUtils.symbol(fn)
                               .equals("set!")) {
-          return env.set(SchemeUtils.car(args), this.eval(SchemeUtils.cdr(args), env));
+          return env.set(SchemeUtils.car(args), this.eval(SchemeUtils.car(SchemeUtils.cdr(args)), env));
         } else if (SchemeUtils.symbol(fn)
                               .equals("if")) {
           func = (SchemeUtils.truth(this.eval(SchemeUtils.car(args), env))
-                  ? SchemeUtils.cdr(args)
-                  : SchemeUtils.cdr(SchemeUtils.cdr(args)));
+                  ? SchemeUtils.car(SchemeUtils.cdr(args))
+                  : SchemeUtils.car(SchemeUtils.cdr(SchemeUtils.cdr(args))));
         } else if (SchemeUtils.symbol(fn)
                               .equals("lambda")) {
           return new SchemeClosure(SchemeUtils.car(args), SchemeUtils.cdr(args), env);
@@ -66,6 +66,7 @@ public final class Scheme {
             func = cls.body;
             env = new Environment(cls.params, this.evalList(args, env), cls.env);
           } else {
+            System.out.println("FN: " + fn);
             return ((SchemeProcedure) fn).apply(this, this.evalList(args, env));
           }
         }

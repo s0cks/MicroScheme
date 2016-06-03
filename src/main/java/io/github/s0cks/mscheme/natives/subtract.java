@@ -12,7 +12,8 @@ public final class subtract
 extends SchemeProcedure {
   @Override
   public SchemeObject apply(Scheme scheme, SchemeObject args) {
-    SchemeNumber result = new SchemeNumber(0);
+    SchemeNumber result = ((SchemeNumber) (args instanceof SchemePair ? SchemeUtils.car(args) : args));
+    args = ((args instanceof SchemePair) ? SchemeUtils.cdr(args) : SchemeNull.instance);
     while(args != SchemeNull.instance){
       if(args instanceof SchemePair){
         result = result.subtract(SchemeUtils.car(args));

@@ -22,4 +22,9 @@ extends SchemeClosure{
 
     return old;
   }
+
+  @Override
+  public String toString() {
+    return "(lambda (" + this.params + ") (" + this.body + "))";
+  }
 }
