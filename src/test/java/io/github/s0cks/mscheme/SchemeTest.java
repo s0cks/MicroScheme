@@ -19,7 +19,7 @@ public class SchemeTest {
       });
       scheme.eval((new SchemeParser(System.class.getResourceAsStream("/Test.scm"))).parse());
     } catch(Exception e){
-      // Fallthrough
+      e.printStackTrace(System.err);
     }
   }
 }
