@@ -66,7 +66,6 @@ public final class Scheme {
             func = cls.body;
             env = new Environment(cls.params, this.evalList(args, env), cls.env);
           } else {
-            System.out.println("FN: " + fn);
             return ((SchemeProcedure) fn).apply(this, this.evalList(args, env));
           }
         }
