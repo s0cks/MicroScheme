@@ -82,7 +82,6 @@ public final class Environment{
   }
 
   public SchemeObject define(SchemeObject var, SchemeObject val){
-    System.out.println(var.toString() + " -> " + val.toString());
     this.vars = SchemeUtils.cons(var, this.vars);
     this.vals = SchemeUtils.cons(val, this.vals);
     if(val instanceof SchemeProcedure && ((SchemeProcedure) val).name.equals("lambda")) ((SchemeProcedure) val).name = var.toString();
