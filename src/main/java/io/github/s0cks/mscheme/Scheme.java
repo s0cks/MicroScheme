@@ -12,7 +12,7 @@ public final class Scheme {
   public static final SchemeSymbol LAMBDA = new SchemeSymbol("lambda");
   public static final Environment GLOBAL = new Environment();
 
-  public SchemeObject eval(SchemeObject func){
+  public SchemeObject eval(SchemeObject func) {
     return this.eval(func, GLOBAL);
   }
 
@@ -48,9 +48,9 @@ public final class Scheme {
           return env.set(SchemeUtils.car(args), this.eval(SchemeUtils.car(SchemeUtils.cdr(args)), env));
         } else if (SchemeUtils.symbol(fn)
                               .equals("if")) {
-          func = (SchemeUtils.truth(this.eval(SchemeUtils.car(args), env))
-                  ? SchemeUtils.car(SchemeUtils.cdr(args))
-                  : SchemeUtils.car(SchemeUtils.cdr(SchemeUtils.cdr(args))));
+          func = (SchemeUtils.truth(this.eval(SchemeUtils.car(args), env)))
+                 ? SchemeUtils.car(SchemeUtils.cdr(args))
+                 : SchemeUtils.car(SchemeUtils.cdr(SchemeUtils.cdr(args)));
         } else if (SchemeUtils.symbol(fn)
                               .equals("lambda")) {
           return new SchemeClosure(SchemeUtils.car(args), SchemeUtils.cdr(args), env);

@@ -35,7 +35,7 @@ public final class SchemeUtils {
   }
 
   public static boolean truth(SchemeObject obj){
-    return obj == SchemeBoolean.TRUE;
+    return obj == SchemeBoolean.TRUE || ((obj instanceof SchemeBoolean) && ((SchemeBoolean) obj).value);
   }
 
   public static SchemeObject cons(SchemeObject a, SchemeObject b) {

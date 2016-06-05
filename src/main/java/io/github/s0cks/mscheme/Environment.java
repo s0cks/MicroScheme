@@ -4,8 +4,10 @@ import io.github.s0cks.mscheme.natives.add;
 import io.github.s0cks.mscheme.natives.divide;
 import io.github.s0cks.mscheme.natives.equals;
 import io.github.s0cks.mscheme.natives.greater_than;
+import io.github.s0cks.mscheme.natives.isnull;
 import io.github.s0cks.mscheme.natives.less_than;
 import io.github.s0cks.mscheme.natives.multiply;
+import io.github.s0cks.mscheme.natives.not;
 import io.github.s0cks.mscheme.natives.sqrt;
 import io.github.s0cks.mscheme.natives.subtract;
 import io.github.s0cks.mscheme.primitives.SchemeObject;
@@ -34,6 +36,8 @@ public final class Environment{
     this.definePrimitive(">", new greater_than());
     this.definePrimitive("<", new less_than());
     this.definePrimitive("eq?", new equals());
+    this.definePrimitive("null?", new isnull());
+    this.definePrimitive("not", new not());
   }
 
   private void definePrimitive(String name, SchemeProcedure proc){

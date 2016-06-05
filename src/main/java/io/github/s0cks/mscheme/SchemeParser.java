@@ -31,6 +31,7 @@ implements Closeable {
     addSymbol('>');
     addSymbol('<');
     addSymbol('\'');
+    addSymbol('?');
   }
 
   public static boolean isSymbol(char c){

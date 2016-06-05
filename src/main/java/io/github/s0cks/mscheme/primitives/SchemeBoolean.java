@@ -10,4 +10,13 @@ implements SchemeObject{
   public SchemeBoolean(boolean value){
     this.value = value;
   }
+
+  public static SchemeBoolean of(boolean v){
+    return v ? TRUE : FALSE;
+  }
+
+  @Override
+  public String toString() {
+    return this.value ? "true" : "false";
+  }
 }
