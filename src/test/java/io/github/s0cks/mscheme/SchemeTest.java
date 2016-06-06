@@ -1,5 +1,6 @@
 package io.github.s0cks.mscheme;
 
+import io.github.s0cks.mscheme.primitives.SchemeNull;
 import io.github.s0cks.mscheme.primitives.SchemeObject;
 import io.github.s0cks.mscheme.primitives.SchemeProcedure;
 import io.github.s0cks.mscheme.primitives.SchemeSymbol;
@@ -14,7 +15,7 @@ public class SchemeTest {
         @Override
         public SchemeObject apply(Scheme scheme, SchemeObject args) {
           System.out.println(SchemeUtils.car(args));
-          return null;
+          return SchemeNull.instance;
         }
       });
       scheme.eval((new SchemeParser(System.class.getResourceAsStream("/Test.scm"))).parse());

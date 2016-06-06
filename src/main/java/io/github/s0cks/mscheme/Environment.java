@@ -1,11 +1,15 @@
 package io.github.s0cks.mscheme;
 
 import io.github.s0cks.mscheme.natives.add;
+import io.github.s0cks.mscheme.natives.car;
+import io.github.s0cks.mscheme.natives.cdr;
+import io.github.s0cks.mscheme.natives.cons;
 import io.github.s0cks.mscheme.natives.divide;
 import io.github.s0cks.mscheme.natives.equals;
 import io.github.s0cks.mscheme.natives.greater_than;
 import io.github.s0cks.mscheme.natives.isnull;
 import io.github.s0cks.mscheme.natives.less_than;
+import io.github.s0cks.mscheme.natives.list;
 import io.github.s0cks.mscheme.natives.multiply;
 import io.github.s0cks.mscheme.natives.not;
 import io.github.s0cks.mscheme.natives.sqrt;
@@ -38,6 +42,10 @@ public final class Environment{
     this.definePrimitive("eq?", new equals());
     this.definePrimitive("null?", new isnull());
     this.definePrimitive("not", new not());
+    this.definePrimitive("car", new car());
+    this.definePrimitive("cdr", new cdr());
+    this.definePrimitive("cons", new cons());
+    this.definePrimitive("list", new list());
   }
 
   private void definePrimitive(String name, SchemeProcedure proc){

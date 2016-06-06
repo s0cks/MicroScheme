@@ -25,17 +25,30 @@ public final class SchemeUtils {
   }
 
   public static SchemeObject setFirst(SchemeObject pair, SchemeObject value) {
-    if(!(pair instanceof SchemePair)) throw new IllegalStateException("Attempt to set-car of non-pair object: " + pair);
+    if (!(pair instanceof SchemePair))
+      throw new IllegalStateException("Attempt to set-car of non-pair object: " + pair);
     return ((SchemePair) pair).car = value;
   }
 
-  public static SchemeObject setLast(SchemeObject pair, SchemeObject value){
-    if(!(pair instanceof SchemePair)) throw new IllegalStateException("Attempt to set-car of non-pair object: " + pair);
+  public static SchemeObject cadr(SchemeObject obj) {
+    if (!(obj instanceof SchemePair)) throw new IllegalStateException(obj + " not a pair");
+    return SchemeUtils.car(SchemeUtils.cdr(obj));
+  }
+
+  public static SchemeObject caddr(SchemeObject obj) {
+    if (!(obj instanceof SchemePair)) throw new IllegalStateException(obj + " not a pair");
+    return SchemeUtils.car(SchemeUtils.cdr(SchemeUtils.cdr(obj)));
+  }
+
+  public static SchemeObject setLast(SchemeObject pair, SchemeObject value) {
+    if (!(pair instanceof SchemePair))
+      throw new IllegalStateException("Attempt to set-car of non-pair object: " + pair);
     return ((SchemePair) pair).cdr = value;
   }
 
-  public static boolean truth(SchemeObject obj){
-    return obj == SchemeBoolean.TRUE || ((obj instanceof SchemeBoolean) && ((SchemeBoolean) obj).value);
+  public static boolean truth(SchemeObject obj) {
+    return ((obj instanceof SchemeBoolean) && ((SchemeBoolean) obj).value)
+           || obj != SchemeBoolean.FALSE;
   }
 
   public static SchemeObject cons(SchemeObject a, SchemeObject b) {

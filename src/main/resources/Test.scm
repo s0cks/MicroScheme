@@ -1,5 +1,5 @@
 (begin
-    (define test #t)
-    (if (not (eq? test #f))
-        (display "Is a test")
-        (display "Not a test")))
+    (define debug #t)
+    (cond (debug)
+          (display "debug")
+          (display "not a debug")))
